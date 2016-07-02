@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dashing',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -115,6 +116,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+DASHING = {
+    'INSTALLED_WIDGETS': ('number', 'list', 'graph',),
+    'PERMISSION_CLASSES':  (
+        'dashing.permissions.IsAuthenticated',
+    )
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
