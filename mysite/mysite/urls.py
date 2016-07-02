@@ -13,14 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
 from django.contrib import admin
+from dashing import utils
 from dashing.utils import router
+from django.views.generic.base import RedirectView
+from .widgets import CustomWidget
 
+router.register(CustomWidget, 'custom_widget', eg_kwargs_param="[A-Za-z0-9_-]+")
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^dashboard/', include(router.urls)),
+    url(r'^dashboard/', include(router.urls), name='dashboard'),
+    url(r'^$', RedirectView.as_view(url='dashboard/'), name='index')
+#    url(r'^dashboard/', include('dashing.urls')),
 
 ]
+#    url(r'^dashboard/', include(router.urls)),
 

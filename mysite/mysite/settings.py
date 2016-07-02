@@ -11,9 +11,18 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from os.path import join, dirname
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+STATIC_ROOT = join(dirname(BASE_DIR), 'staticfiles')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
 # Quick-start development settings - unsuitable for production
@@ -108,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
@@ -116,14 +125,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DASHING = {
+#     'INSTALLED_WIDGETS': ('clock','number', 'list', 'graph',),
+#     'PERMISSION_CLASSES':  (
+#         'dashing.permissions.IsAuthenticated',
+#     )
+# }
 DASHING = {
-    'INSTALLED_WIDGETS': ('number', 'list', 'graph',),
-    'PERMISSION_CLASSES':  (
-        'dashing.permissions.IsAuthenticated',
-    )
+    'INSTALLED_WIDGETS': ('number', 'list', 'graph', 'clock', 'weather'),
 }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+# )
