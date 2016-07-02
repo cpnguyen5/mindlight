@@ -21,11 +21,14 @@ from django.views.generic.base import RedirectView
 from .widgets import CustomWidget
 
 router.register(CustomWidget, 'custom_widget', eg_kwargs_param="[A-Za-z0-9_-]+")
+
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^dashboard/', include(router.urls), name='dashboard'),
-    url(r'^$', RedirectView.as_view(url='dashboard/'), name='index')
+    url(r'^dashboard/', include(router.urls)),
+    url(r'^$', RedirectView.as_view(url='dashboard/'), name='index'),
+    #url(r'^simple_chart/$', include(templatespolls.site.simple_chart, name="simple_chart"),
+
 #    url(r'^dashboard/', include('dashing.urls')),
 
 ]
