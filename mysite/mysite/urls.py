@@ -23,6 +23,7 @@ from .widgets import CustomWidget
 router.register(CustomWidget, 'custom_widget', eg_kwargs_param="[A-Za-z0-9_-]+")
 
 urlpatterns = [
+    url(r'', include('polls.urls')),
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^dashboard/', include(router.urls)),
